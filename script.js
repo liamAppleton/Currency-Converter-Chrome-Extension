@@ -50,8 +50,12 @@ currencyTwo.addEventListener('change', async (e) => {
 
 inputOne.addEventListener('input', (e) => {
   let userInput = parseFloat(e.target.value);
+  console.log(userInput);
 
-  if (isNaN(userInput)) userInput = 0;
+  if (isNaN(userInput)) {
+    userInput = 0;
+    inputOne.value = '';
+  }
 
   amount = userInput;
 
