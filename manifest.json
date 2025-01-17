@@ -4,6 +4,12 @@
     "version": "1.0.0",
     "description": "Easily convert between currencies.",
     "icons": {
-      "icon": "./images/exchange.png"
-    }
+      "128": "./images/exchange.png"
+    },
+    "action": {
+    "default_popup": "index.html",
+    "default_icon": "./images/exchange.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["https://freecurrencyapi.com/"]
   }

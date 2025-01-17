@@ -51,8 +51,15 @@ const handleCurrencySwap = async () => {
   rate = parseFloat(data[want]);
 };
 
-currencyOne.addEventListener('change', (e) => {
+currencyOne.addEventListener('change', async (e) => {
   have = e.target.value;
+
+  const { data } = await fetchData();
+  rate = parseFloat(data[want]);
+
+  if (have && want) {
+    inputOne.value = (inputTwo.value / rate).toFixed(2);
+  }
 
   checkCurrenciesSelected();
 });
@@ -63,6 +70,10 @@ currencyTwo.addEventListener('change', async (e) => {
   const { data } = await fetchData();
   rate = parseFloat(data[want]);
 
+  if (have && want) {
+    inputTwo.value = (inputOne.value * rate).toFixed(2);
+  }
+
   checkCurrenciesSelected();
 });
 
@@ -71,6 +82,7 @@ inputOne.addEventListener('input', (e) => {
   if (e.target.value.match(/^.*\.\d{3,}$/)) {
     e.target.value = e.target.value.substring(0, e.target.value.length - 1);
   }
+
   let userInput = parseFloat(e.target.value).toFixed(2);
   // prevent user from entering negative numbers
   if (isNaN(userInput)) {
