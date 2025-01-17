@@ -2,6 +2,7 @@ const currencyOne = document.getElementById('curr-one');
 const currencyTwo = document.getElementById('curr-two');
 const inputOne = document.getElementById('input-one');
 const inputTwo = document.getElementById('input-two');
+const swapBtn = document.getElementById('swap-btn');
 
 let { have, want, amount, newAmount, rate } = {
   have: '',
@@ -19,6 +20,21 @@ const checkCurrenciesSelected = () => {
     inputOne.disabled = true;
     inputOne.classList.remove('input-one-active');
   }
+};
+
+const handleCurrencySwap = async () => {
+  let temp = currencyOne.value;
+  currencyOne.value = currencyTwo.value;
+  currencyTwo.value = temp;
+  have = currencyOne.value;
+  want = currencyTwo.value;
+
+  temp = inputOne.value;
+  inputOne.value = inputTwo.value;
+  inputTwo.value = temp;
+
+  const { data } = await fetchData();
+  rate = parseFloat(data[want]);
 };
 
 const fetchData = async () => {
@@ -49,7 +65,6 @@ currencyTwo.addEventListener('change', async (e) => {
 
   const { data } = await fetchData();
   rate = parseFloat(data[want]);
-  console.log(rate);
 
   checkCurrenciesSelected();
 });
@@ -71,3 +86,5 @@ inputOne.addEventListener('input', (e) => {
   newAmount = amount * rate;
   inputTwo.value = newAmount.toFixed(2);
 });
+
+swapBtn.addEventListener('click', handleCurrencySwap);
