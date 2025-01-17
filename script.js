@@ -4,41 +4,13 @@ const inputOne = document.getElementById('input-one');
 const inputTwo = document.getElementById('input-two');
 const swapBtn = document.getElementById('swap-btn');
 
-let { have, want, amount, newAmount, rate } = {
-  have: '',
-  want: '',
-  amount: 0,
-  newAmount: 0,
-  rate: 0,
-};
-
-const checkCurrenciesSelected = () => {
-  if (currencyOne.value && currencyTwo.value) {
-    inputOne.disabled = false;
-    inputOne.classList.add('input-one-active');
-  } else {
-    inputOne.disabled = true;
-    inputOne.classList.remove('input-one-active');
-  }
-};
-
-const handleCurrencySwap = async () => {
-  let temp = currencyOne.value;
-  currencyOne.value = currencyTwo.value;
-  currencyTwo.value = temp;
-  have = currencyOne.value;
-  want = currencyTwo.value;
-
-  temp = inputOne.value;
-  inputOne.value = inputTwo.value;
-  inputTwo.value = temp;
-
-  const { data } = await fetchData();
-  rate = parseFloat(data[want]);
-};
+let have = '';
+let want = '';
+let amount = 0;
+let newAmount = 0;
+let rate = 0;
 
 const fetchData = async () => {
-  const apiKey = 'bWbwxDdtS9Bzsouymirguw==uZhWEMRD79j4eKVg';
   const url = `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_qzfbQmDcpUcEM0uUnqewmns7EoTDtLA9C30pSRXt&currencies=${want}&base_currency=${have}`;
 
   try {
@@ -52,6 +24,31 @@ const fetchData = async () => {
   } catch (error) {
     console.log(error.message);
   }
+};
+
+const checkCurrenciesSelected = () => {
+  if (currencyOne.value && currencyTwo.value) {
+    inputOne.disabled = false;
+    inputOne.classList.add('input-one-active');
+  } else {
+    inputOne.disabled = true;
+    inputOne.classList.remove('input-one-active');
+  }
+};
+
+const handleCurrencySwap = async () => {
+  [currencyOne.value, currencyTwo.value] = [
+    currencyTwo.value,
+    currencyOne.value,
+  ];
+
+  [inputOne.value, inputTwo.value] = [inputTwo.value, inputOne.value];
+
+  have = currencyOne.value;
+  want = currencyTwo.value;
+
+  const { data } = await fetchData();
+  rate = parseFloat(data[want]);
 };
 
 currencyOne.addEventListener('change', (e) => {
