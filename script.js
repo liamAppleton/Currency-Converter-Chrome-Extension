@@ -67,12 +67,11 @@ currencyTwo.addEventListener('change', async (e) => {
 });
 
 inputOne.addEventListener('input', (e) => {
-  let userInput = e.target.value;
   // prevent user from entering more than 2 dp
-  if (userInput.match(/^.*\.\d{3,}$/)) {
-    e.target.value = userInput.substring(0, userInput.length - 1);
+  if (e.target.value.match(/^.*\.\d{3,}$/)) {
+    e.target.value = e.target.value.substring(0, e.target.value.length - 1);
   }
-  userInput = parseFloat(e.target.value).toFixed(2);
+  let userInput = parseFloat(e.target.value).toFixed(2);
   // prevent user from entering negative numbers
   if (isNaN(userInput)) {
     userInput = 0;
