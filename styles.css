@@ -6,6 +6,11 @@ body {
     align-items: center;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: row;
+}
+
 input {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -16,7 +21,7 @@ input {
     outline: none;
 }
 
-.inputField {
+.input-field {
     display: flex;
     flex-direction: row;
 }
@@ -25,11 +30,49 @@ input {
     color: white;
     font-size: 13px;
     text-align: center;
-    background-color: #2563EB ;
+    background-color: #2563EB;
     width: 50px;
     height: 50px;
     margin-right: 10px;
     border: none;
+    border-radius: 15px;   
+    outline: none;
+}
+
+.currency-select:hover {
+    background-color: hsla(221, 83%, 53%, 0.75);
+}
+
+.input-one-active {
+    border: 2px solid #3B82F6;
+}
+
+.swap-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6px;
+}
+
+#swap-btn {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    background-color: #F87171;
+    width: 45px;
+    height: 45px;
+    border: none;
     border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     
+}
+
+#swap-btn:hover {
+    background-color: hsla(0, 91%, 71%, 0.75);
+}
+
+#swap-btn:active {
+    background-color: hsla(0, 91%, 71%, 0.50);
 }

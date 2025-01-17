@@ -11,9 +11,9 @@
       <div class="mb-3">
         <h1>Currency Converter</h1>
       </div>
-      <div>
+      <div class="form-container">
         <form>
-          <div class="inputField">
+          <div class="input-field">
             <select name="" id="curr-one" class="currency-select">
               <option></option>
               <option value="GBP">GBP</option>
@@ -27,13 +27,15 @@
             </select>
             <input
               type="number"
+              step="0.01"
+              min="0"
               id="input-one"
               class="form-control"
               disabled="true"
             />
           </div>
           <br />
-          <div class="inputField">
+          <div class="input-field">
             <select name="" id="curr-two" class="currency-select">
               <option></option>
               <option value="GBP">GBP</option>
@@ -53,6 +55,7 @@
             />
           </div>
         </form>
+        <div class="swap-btn-container"><button id="swap-btn">⇌</button></div>
       </div>
     </div>
     <script src="script.js"></script>
